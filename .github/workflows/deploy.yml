@@ -7,7 +7,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: vite build
-      run: npm run build
+      run: |
+        npm install
+        npm run build
     - name: Build Vue
       run: |
         cd dist
