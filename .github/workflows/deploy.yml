@@ -1,0 +1,34 @@
+name: Build and Publish
+on: [push]
+jobs:
+  build_vue:
+    runs-on: ubuntu-latest
+    name: Build Vue
+    steps:
+    - uses: actions/checkout@v2
+    - name: vite build
+      branding:
+        icon: 'activity'
+        color: 'blue'
+      description: 'This Action will build the SPA'
+      run: npm run build
+    ## OG:REF w/ https://github.com/xRealNeon
+    - name: 'Vue to Github Pages'
+      branding:
+        icon: 'activity'  
+        color: 'blue'
+      description: 'This Action will deploy it to Github Pages'
+      runs:
+        using: "composite"
+        steps:
+        - name: Build Vue
+          run: |
+            cd dist
+            ln -s index.html 404.html
+            git config --global user.email "boolioncube@gmail.com"
+            git config --global user.name "boolionBot"
+            git init
+            git add -A
+            git commit -m 'autoPublish'
+            git push -f https://zosky:${{ secrets.GITHUB_TOKEN }}@github.com/zosky/my-beer-fridge.git master:gh-pages
+          shell: bash
