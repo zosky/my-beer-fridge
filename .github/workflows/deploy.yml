@@ -7,12 +7,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: vite build
-      branding:
-        icon: 'activity'
-        color: 'blue'
-      description: 'This Action will build the SPA'
       run: npm run build
-    ## OG:REF w/ https://github.com/xRealNeon
     - name: Build Vue
       run: |
         cd dist
