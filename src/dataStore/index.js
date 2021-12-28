@@ -45,7 +45,7 @@ const mutations = {
       const B = Object.values(b)
       return B[1] == brewer && B[2] == beer 
     })
-    if (thisBeer?.qty) thisBeer.qty++
+    if (thisBeer) thisBeer.qty++
   },
   rmBeer(state, newBrew) {
     const myBeer = state.myBeer
