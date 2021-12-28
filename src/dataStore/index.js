@@ -1,7 +1,9 @@
 import { createStore } from 'vuex'
+import onList from '../assets/onBeerList.json'
 
 const state = {
-  myBeer: {}
+  myBeer: {},
+  onList: onList
 }
 
 // mutations are operations that actually mutate the state.
@@ -10,6 +12,10 @@ const state = {
 // mutations must be synchronous and can be recorded by plugins
 // for debugging purposes.
 const mutations = {
+  initBeer(state){
+    const beer = window.localStorage.getItem('myBeer')
+    state.myBeer = (beer) ? JSON.parse(beer) : {}
+  },
   addBeer(state, newBrew) { 
     const myBeer = state.myBeer
     const brewer = newBrew[0].trim()
@@ -17,6 +23,7 @@ const mutations = {
     myBeer[brewer] = myBeer?.[ brewer ] ?? {}
     if (myBeer[brewer][beer]) myBeer[brewer][beer]++
     else myBeer[brewer][beer] = 1
+    window.localStorage.setItem('myBeer', JSON.stringify(myBeer)) 
   },
   rmBeer(state, newBrew) {
     const myBeer = state.myBeer
@@ -27,6 +34,7 @@ const mutations = {
       : delete myBeer[brewer][beer]
     if(!Object.keys(myBeer[brewer]).length)
       delete myBeer[brewer]
+    window.localStorage.setItem('myBeer', JSON.stringify(myBeer))
   }
 
 }

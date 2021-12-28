@@ -5,7 +5,7 @@ import SvgIconsVue from '../assets/svgIcons.vue'
 const hostName = ref('steve')
 
 const store = useStore()
-const beer = store.state.myBeer
+store.commit('initBeer')
 const fridgeCount = computed(()=>
   Object.values(store.state.myBeer).reduce((acc,brewer)=> {
     const t = Object.values(brewer).reduce((a,c)=> a+c,0 )
