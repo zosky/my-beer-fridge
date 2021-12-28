@@ -4,18 +4,14 @@ import { useStore } from 'vuex'
 import SvgIcons from '../assets/svgIcons.vue'
 const props = defineProps({
   beer: {type: Array, default: null},
+  qty: {type: Number, default: 0},
   i: {type: Number, default: 0}
 })
 const store = useStore()
-const haveIt = computed(()=> {
-  const b = props.beer[0].trim()
-  const B = props.beer[1].trim()
-  return store.state.myBeer?.[b]?.[B] ?? 0 
-})
 const changeStore = (f,b) => {store.commit(f,b)}
 </script>
 <template>
-<article :class="{ haveSome: haveIt }">
+<article :class="{ haveSome: qty }">
     <div class="cardIwrap"><SvgIcons :icon="i" class=" cardIcon" /></div>
     <div id="label">
         <div class="brewer" v-text="beer[0]" />
@@ -23,11 +19,11 @@ const changeStore = (f,b) => {store.commit(f,b)}
     </div>
     <div class="haveIt">
         <div>
-            <SvgIcons v-show="haveIt" 
+            <SvgIcons v-show="qty" 
                 :icon="3" class="icon"
                 @click="changeStore('rmBeer',beer)"
             />
-            <div id="qty" v-show="haveIt" v-text="haveIt" />
+            <div id="qty" v-show="qty" v-text="qty" />
             <SvgIcons 
                 :icon="2" class="icon"
                 @click="changeStore('addBeer',beer)"
