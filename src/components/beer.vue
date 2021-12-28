@@ -1,8 +1,8 @@
 <script setup>
-import SvgIcons from '../assets/svgIcons.vue';
+import SvgIcons from '../assets/svgIcons.vue'
 defineProps({
-    beer: {type: Array, default: null},
-    i: {type: Number, default: 0}
+  beer: {type: Array, default: null},
+  i: {type: Number, default: 0}
 })
 </script>
 <template>
@@ -11,6 +11,10 @@ defineProps({
     <div id="label">
         <div class="brewer" v-text="beer[0]" />
         <div class="brew" v-text="beer[1]" />
+    </div>
+    <div>
+        <div @click="this.$store.commit('addBeer',beer)">+</div>
+        <div @click="this.$store.commit('rmBeer',beer)">-</div>
     </div>
 </article>
 </template>
