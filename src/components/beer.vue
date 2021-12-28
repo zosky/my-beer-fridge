@@ -12,6 +12,7 @@ const haveIt = computed(()=> {
   const B = props.beer[1].trim()
   return store.state.myBeer?.[b]?.[B] ?? 0 
 })
+const changeStore = (f,b) => {store.commit(f,b)}
 </script>
 <template>
 <article :class="{ haveSome: haveIt }">
@@ -24,12 +25,12 @@ const haveIt = computed(()=> {
         <div>
             <SvgIcons v-show="haveIt" 
                 :icon="3" class="icon"
-                @click="this.$store.commit('rmBeer',beer)"
+                @click="changeStore('rmBeer',beer)"
             />
             <div id="qty" v-show="haveIt" v-text="haveIt" />
             <SvgIcons 
                 :icon="2" class="icon"
-                @click="this.$store.commit('addBeer',beer)"
+                @click="changeStore('addBeer',beer)"
             />
         </div>
     </div>
