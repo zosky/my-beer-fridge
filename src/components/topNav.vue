@@ -37,9 +37,9 @@ const fridgeCount = computed(()=>
 </template>
 
 <style scoped>
-    section { @apply w-full h-12 bg-blue-100 flex justify-between items-center px-2 sticky top-0 }
-    #topNav { @apply flex flex-row justify-center py-2 h-full gap-3 }
-    #logo { @apply pr-1.5 -mr-1 border-r-2 text-blue-800 border-blue-300  }
+    section { @apply w-full h-12 bg-blue-100 flex justify-between items-center px-2 sticky top-0 z-10 bg-opacity-90 shadow-md }
+    #topNav { @apply flex flex-row justify-center py-2 h-full gap-2 }
+    #logo { @apply pr-1 border-r-2 text-blue-800 border-blue-300  }
     .masthead { @apply h-full w-auto  }
     #hostName { @apply font-bold select-none }
     #hostName::after { content: "'s fridge"; @apply text-xs font-light;}
@@ -49,6 +49,6 @@ const fridgeCount = computed(()=>
     .badge div { @apply 
         font-bold 
         bg-blue-600 text-blue-200 
-        px-1 -ml-4 -mt-1.5
+        px-1 -ml-2 -mt-1.5
         rounded-full justify-self-start text-xs }
 </style>
