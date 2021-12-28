@@ -14,7 +14,7 @@ const haveIt = computed(()=> {
 })
 </script>
 <template>
-<article>
+<article :class="{ haveSome: haveIt }">
     <div><SvgIcons :icon="i" class="icon" /></div>
     <div id="label">
         <div class="brewer" v-text="beer[0]" />
@@ -41,6 +41,8 @@ const haveIt = computed(()=> {
         hover:bg-blue-200 transition-all
         relative
     }
+    article.haveSome { @apply bg-blue-100 border-blue-400 }
+    article.haveSome svg { @apply text-blue-600 }
     #label { @apply flex flex-col text-right leading-none w-min px-2 }
     .brewer { @apply flex text-xs leading-none min-w-min }
     .brew { @apply flex font-bold min-w-min }
