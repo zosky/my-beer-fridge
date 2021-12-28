@@ -24,14 +24,14 @@ const search = computed({
             <SvgIconsVue :icon="4" id=logo 
                 :class="['masthead',{hereNow: $route.name=='bar'}]"
             />
-            <SvgIconsVue :icon="5" 
+            <SvgIconsVue :icon="99" 
                 :class="['masthead',{hereNow: $route.name=='fridge'}]"
                 @click="$router.push({name:'fridge'})"
             />
             <div class="badge">
                 <div v-text="fridgeCount" />
             </div>
-            <SvgIconsVue :icon="6" 
+            <SvgIconsVue :icon="98" 
                 :class="['masthead',{hereNow: $route.name=='bar'}]"
                 @click="$router.push({name:'bar'})"
             />
