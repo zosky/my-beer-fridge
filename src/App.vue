@@ -5,7 +5,7 @@ import AddBeer from './components/addBeer.vue'
 
 <template>
   <TopNav />
-  <AddBeer />
+  <router-view />
 </template>
 
 <style>
