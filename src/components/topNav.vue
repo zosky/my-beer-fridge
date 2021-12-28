@@ -12,6 +12,10 @@ const fridgeCount = computed(()=>
     return acc + t
   },0 )
 )
+const search = computed({
+  get:()=> store.state?.search,
+  set:(v)=> { store.state.search = v }
+})
 </script>
 
 <template>
@@ -32,6 +36,11 @@ const fridgeCount = computed(()=>
                 @click="$router.push({name:'bar'})"
             />
         </div>
+        <div id="filler" />
+        <input type="search" id="search"
+            v-model="search"
+            :placeholder="`${$route.name=='bar'?'find':'add'} a brew`"
+        >
         <div id=hostName v-text="hostName" :class="$route.name" />
     </section>
 </template>
@@ -41,7 +50,8 @@ const fridgeCount = computed(()=>
     #topNav { @apply flex flex-row justify-center py-2 h-full gap-2 }
     #logo { @apply pr-1 border-r-2 text-blue-800 border-blue-300  }
     .masthead { @apply h-full w-auto  }
-    #hostName { @apply font-bold select-none }
+    #hostName { @apply font-bold select-none min-w-max }
+    #hostName::before { content: "@"; @apply text-xs font-light;}
     #hostName::after { content: "'s fridge"; @apply text-xs font-light;}
     #hostName.fridge::after { content: "'s fridge" }
     #hostName.bar::after { content: "'s bar" }
@@ -51,4 +61,10 @@ const fridgeCount = computed(()=>
         bg-blue-600 text-blue-200 
         px-1 -ml-2 -mt-1.5
         rounded-full justify-self-start text-xs }
+    #search { @apply 
+        px-2 m-1 
+        justify-self-end max-w-sm rounded-xl text-right font-bold
+        text-blue-600 bg-blue-100 ring-1 ring-blue-300 placeholder-blue-300
+        focus:bg-blue-200 focus:ring-blue-500 focus:outline-none }
+    #filler { @apply w-full }
 </style>

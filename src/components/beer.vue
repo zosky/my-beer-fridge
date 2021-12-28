@@ -16,7 +16,7 @@ const changeStore = (f,b) => {store.commit(f,b)}
 </script>
 <template>
 <article :class="{ haveSome: haveIt }">
-    <div><SvgIcons :icon="i" class="icon" /></div>
+    <div class="cardIwrap"><SvgIcons :icon="i" class=" cardIcon" /></div>
     <div id="label">
         <div class="brewer" v-text="beer[0]" />
         <div class="brew" v-text="beer[1]" />
@@ -38,15 +38,18 @@ const changeStore = (f,b) => {store.commit(f,b)}
 </template>
 <style scoped>
     article { @apply 
-        flex flex-row border-blue-300 border rounded-xl p-2 shadow-md 
+        flex flex-row justify-items-end
+        border-blue-300 border rounded-xl m-1 p-2 shadow-md 
         hover:bg-blue-200 transition-all
-        relative
+        relative w-full
     }
     article.haveSome { @apply bg-blue-100 border-blue-400 }
-    article.haveSome svg { @apply text-blue-600 }
-    #label { @apply flex flex-col text-right leading-none w-min px-2 }
-    .brewer { @apply flex text-xs leading-none min-w-min }
-    .brew { @apply flex font-bold min-w-min }
+    article.haveSome { @apply text-blue-600 }
+    #label { @apply flex flex-col items-end justify-center text-right leading-none w-fit px-2 }
+    .brewer { @apply flex text-xs leading-none w-fit }
+    .brew { @apply flex font-bold w-fit}
+    .cardIwrap { @apply flex flex-col justify-center align-middle }
+    .cardIcon { @apply h-10 sm:h-20 w-min  }
     .icon { @apply h-full w-auto }
     .haveIt { @apply absolute top-0 -right-2 select-none }
     .haveIt > div { @apply flex flex-row ring-1 px-1 rounded-xl -mt-3 -mr-1 bg-blue-200 }
