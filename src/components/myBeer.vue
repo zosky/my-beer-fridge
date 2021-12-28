@@ -19,7 +19,7 @@ defineProps({
 </template>
 
 <style scoped>
-    article { @apply flex flex-row gap-x-1 items-center }
+    article { @apply flex flex-row gap-x-1 items-center hover:text-blue-600 }
     h3 { @apply font-bold text-sm }
     .qty { @apply h-4 w-auto -mx-0.5 }
 </style>
