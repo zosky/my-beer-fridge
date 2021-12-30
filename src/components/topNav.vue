@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
+import { TableEdit, Fridge, FridgeOutline } from 'mdue'
 import SvgIconsVue from '../assets/svgIcons.vue'
 const hostName = ref('steve')
 
@@ -16,27 +17,44 @@ const search = computed({
   get:()=> store.state?.search,
   set:(v)=> { store.state.search = v }
 })
+const haveOnly = computed({
+  get:()=> store.state?.haveOnly ?? false,
+  set:(v)=> { store.state.haveOnly = v }
+})
 </script>
 
 <template>
     <section>
         <div id="topNav">
-            <SvgIconsVue :icon="4" id=logo 
+            <SvgIconsVue :icon="4" id=logo               
                 :class="['masthead',{hereNow: $route.name=='bar'}]"
             />
-            <SvgIconsVue :icon="99" 
+            <SvgIconsVue :icon="99" role="button"
                 :class="['masthead',{hereNow: $route.name=='fridge'}]"
                 @click="$router.push({name:'fridge'})"
             />
             <div class="badge">
                 <div v-text="fridgeCount" />
             </div>
-            <SvgIconsVue :icon="98" 
+            <SvgIconsVue :icon="98" role="button"
                 :class="['masthead',{hereNow: $route.name=='bar'}]"
                 @click="$router.push({name:'bar'})"
             />
         </div>
         <div id="filler" />
+        <TableEdit 
+            v-if="$route.name=='fridge'" 
+            class="tEdit" role="button"
+            @click="$route.push({name:'bulkEdit'})"
+        />
+        <FridgeOutline v-if="!haveOnly" 
+            class="tEdit" role=button 
+            @click="haveOnly=true" 
+        />
+        <Fridge v-else-if="haveOnly" 
+            class="tEdit" role=button
+            @click="haveOnly=false" 
+            />
         <input type="search" id="search"
             v-model="search"
             :placeholder="`${$route.name=='bar'?'find':'add'} a brew`"
@@ -61,6 +79,7 @@ const search = computed({
         bg-blue-600 text-blue-200 
         px-1 -ml-2 -mt-1.5
         rounded-full justify-self-start text-xs }
+    .tEdit { @apply text-4xl -mb-1 text-blue-400 hover:text-indigo-700 }
     #search { @apply 
         px-2 m-1 
         justify-self-end max-w-sm rounded-xl text-right font-bold

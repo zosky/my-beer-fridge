@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "autoprefix": "^1.0.1",
+    "mdue": "^0.1.4",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.7",
     "vue": "^3.2.25",
