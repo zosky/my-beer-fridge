@@ -1,16 +1,19 @@
 import { createStore } from 'vuex'
 import onList from '../assets/onBeerList.json'
-
 const state = {
   myBeer: {},
-  onListRAW: onList.map(b=>{ 
-    const c = Object.keys(b)
-    c.forEach( C => { b[C] = b[C].trim() } )
-    return b
-  }).filter( b => {
-    const B = Object.values(b) 
-    return B[0] || B[1] ? true:false 
-  })
+  onListRAW: onList
+    .filter( b => { // remove empty entries
+      const B = Object.values(b) 
+      return B[0] || B[1] ? true:false 
+    }).map( b=> { // clean ARR [{brand,name,type,qty}]
+      Object.keys(b).forEach( C => { 
+        const k = C.split(' ')[1].toLocaleLowerCase()
+        b[k] = b[C].trim()
+        delete b[C]
+      })
+      return b
+    })
 }
 
 // mutations are operations that actually mutate the state.
