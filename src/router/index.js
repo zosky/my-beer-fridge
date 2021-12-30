@@ -3,7 +3,9 @@ import Home from '../components/barView.vue'
 const routes = [
   { path: '/my-beer-fridge/', name: 'bar', component: Home },
   { path: '/my-beer-fridge/add', name: 'fridge', 
-    component: () => import( '../components/addBeer.vue') }
+    component: () => import( '../components/addBeer.vue') },
+  { path: '/my-beer-fridge/color', name: 'brewScale', 
+    component: () => import( '../components/colorTag.vue') }
 ]
 const router = createRouter({
   history: createWebHistory(),

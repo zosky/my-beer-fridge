@@ -7,8 +7,10 @@ const onList = store.state.onListRAW
 const search = computed(()=>store.state?.search ?? '')
 const k = Object.keys(onList[0])
 const list = computed( ()=>{
-  const s = search.value?.toLowerCase()
   let list = onList
+  const s = search.value?.toLowerCase()
+  const m = store.state?.haveOnly
+  if(m) list = list.filter(b=>b.qty)
   return (!s) ? list : list.filter( b=> {
     const BE = b[k[1]]?.toLowerCase() 
     const BR = b[k[2]]?.toLowerCase() 
