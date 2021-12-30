@@ -7,6 +7,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@revolist/vue3-datagrid": "^3.0.97",
     "autoprefix": "^1.0.1",
     "mdue": "^0.1.4",
     "postcss": "^8.4.5",

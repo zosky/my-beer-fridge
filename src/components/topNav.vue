@@ -45,7 +45,7 @@ const haveOnly = computed({
         <TableEdit 
             v-if="$route.name=='fridge'" 
             class="tEdit" role="button"
-            @click="$route.push({name:'bulkEdit'})"
+            @click="$router.push({name:'bulkEdit'})"
         />
         <FridgeOutline v-if="!haveOnly" 
             class="tEdit" role=button 

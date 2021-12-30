@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from '@vue/reactivity'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import Brewer from './brewer.vue'
 import MyBeer from './myBeer.vue'
